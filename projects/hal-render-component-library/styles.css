@@ -1,0 +1,81 @@
+ul {
+  list-style-type: none;
+}
+
+.expander {
+   display: inline;
+}
+
+.leaf-property-name {
+  display: inline;
+}
+
+.leaf-boolean-property-value {
+  display: inline;
+  color: brown;
+}
+
+.leaf-string-property-value {
+  display: inline;
+  color: green;
+}
+
+.leaf-string-property-link-value {
+  display: inline;
+  font-family: monospace;
+  color: green;
+}
+
+.leaf-number-property-value {
+  display: inline;
+  color: blue;
+}
+
+.leaf-boolean-property-value {
+  display: inline;
+  color: brown;
+}
+
+.leaf-property-separator {
+  display: inline;
+}
+
+.link {
+  display: inline;
+  font-family: monospace;
+  color: black;
+}
+
+.expand-simbol {
+  cursor: pointer;
+  user-select: none;
+  display: inline;
+  font-weight : bold;
+}
+
+.branch-end {
+  display: inline;
+}
+
+.branch-property-name {
+  user-select: none;
+  display: inline;
+}
+
+.uriTemplateArea {
+  display: inline;
+  font-family: monospace;
+}
+
+.uriTemplateEdit {
+  display: inline;
+  font-family: monospace;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid black;
+}
+
+.uriTemplateText {
+  display: inline;
+}

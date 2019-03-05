@@ -1,0 +1,15 @@
+<li [ngStyle]="{display: 'inline'}">
+  <pre [ngClass]="'expand-simbol'" (click)="clickExpand()">{{expandSymbol()}} </pre>
+  <div  [ngStyle]="{display: 'inline'}">
+    <pre *ngIf="isSimpleBranchProperty()" [ngClass]="'branch-property-name'" (click)="clickExpand()">{{getNodeName()}}</pre>
+    <a *ngIf="isCuriedLinkRel()" [ngClass]="'link'" href="{{getCuriedLinkHref()}}">{{getLinkRel()}}</a>
+    <a *ngIf="isLinkRel()" [ngClass]="'link'" href="{{getLinkRel()}}">{{getLinkRel()}}</a>
+    <pre [ngStyle]="{display: 'inline'}">{{getKeyValueDelimiter()}} {{branchStart()}}</pre>
+  </div>
+  <div *ngIf="node.expanded">
+    <ul [ngStyle]="{'list-style-type':'none', 'margin-top':'0', 'margin-bottom':'0' }">
+      <hrc-json-object-node [node]="subNode" *ngFor="let subNode of node.children"></hrc-json-object-node>
+    </ul>
+  </div>
+  <pre [ngClass]="'branch-end'">{{branchEnd()}}</pre>
+</li>

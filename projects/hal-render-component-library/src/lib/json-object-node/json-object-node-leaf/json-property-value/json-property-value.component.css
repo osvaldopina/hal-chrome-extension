@@ -1,0 +1,29 @@
+.leaf-boolean-property-value {
+  display: inline;
+  color: brown;
+}
+
+.leaf-string-property-value {
+  display: inline;
+  color: green;
+}
+
+.leaf-string-property-link-value {
+  display: inline;
+  font-family: monospace;
+  color: green;
+}
+
+.leaf-number-property-value {
+  display: inline;
+  color: blue;
+}
+
+.leaf-boolean-property-value {
+  display: inline;
+  color: brown;
+}
+
+.leaf-property-separator {
+  display: inline;
+}

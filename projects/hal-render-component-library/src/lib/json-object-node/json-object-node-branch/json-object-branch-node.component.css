@@ -1,0 +1,21 @@
+.expand-simbol {
+  cursor: pointer;
+  user-select: none;
+  display: inline;
+  font-weight : bold;
+}
+
+.branch-property-name {
+  user-select: none;
+  display: inline;
+}
+
+.branch-end {
+  display: inline;
+}
+
+.link {
+  display: inline;
+  font-family: monospace;
+  color: black;
+}

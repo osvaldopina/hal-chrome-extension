@@ -1,0 +1,57 @@
+<div>
+  <textarea #jsonValueTextArea  rows="20" [ngStyle]="{'width': '100%'}" (input)="setJsonValue($event.target.value)">
+    {
+      "_links": {
+        "curies": [{
+          "name": "curie-name",
+          "href": "http://curie-href/{rel}",
+          "templated": true
+        }],
+        "curie-name:curie-parameter": {
+          "href": "http://self-url"
+        },
+        "an-array-link-rel": [
+          {
+            "href": "http://one-array-link-rel-url/{id}/{?name,age}",
+            "templated": true
+          },
+          {
+            "href": "http://other-array-link-rel-url"
+          }
+        ],
+        "http://link-rel": [
+          {
+            "href": "http://link=href"
+          },
+          {
+            "href": "http://other-array-link-rel-url"
+          }
+        ]
+      },
+      "_embedded": {
+        "a-embedded-rel": {
+          "a-property": "a property value"
+        },
+        "curie-name:other-embedded-rel": [
+          {
+            "first-property": "first property value"
+          },
+          {
+            "second-property": "second property value"
+          }
+        ]
+      },
+      "string-property": "string property value",
+      "boolean-property": true,
+      "array-property": [
+        "first-array-item",
+        false,
+        123
+      ],
+      "a-sub-object": {
+        "a-sub-object-property": "a sub object property value"
+      }
+    }</textarea>
+  <input type="button" value="Render HAL" (click)="renderHAL()">
+  <hrc-hal-render-component [hal]="hal"></hrc-hal-render-component>
+</div>

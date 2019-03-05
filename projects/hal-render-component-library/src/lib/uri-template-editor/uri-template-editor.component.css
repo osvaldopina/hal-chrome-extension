@@ -1,0 +1,17 @@
+.uriTemplateArea {
+  display: inline;
+  font-family: monospace;
+}
+
+.uriTemplateEdit {
+  display: inline;
+  font-family: monospace;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid black;
+}
+
+.uriTemplateText {
+  display: inline;
+}

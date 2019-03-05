@@ -1,0 +1,8 @@
+<div [ngClass]="'uriTemplateArea'">
+  <ng-container *ngFor="let templatePart of templateParts">
+    <pre [ngClass]="'uriTemplateText'" *ngIf="isVariable(templatePart)">{{templatePart.name}}=</pre>
+    <input [ngClass]="'uriTemplateEdit'" type="text" [value]="templatePart.value" *ngIf="isVariable(templatePart)" (keyup)="keyUp(templatePart, $event)" [size]="getInputLength(templatePart)" >
+    <pre [ngClass]="'uriTemplateText'" *ngIf="isText(templatePart)">{{templatePart.text}}</pre>
+  </ng-container>
+  <a [href]="evaluatedTemplate()" [ngClass]="'uriTemplateText'">({{evaluatedTemplate()}})</a>
+</div>

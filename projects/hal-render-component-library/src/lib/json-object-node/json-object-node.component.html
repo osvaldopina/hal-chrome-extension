@@ -1,0 +1,6 @@
+<div *ngIf="node.children.length === 0">
+  <hrc-json-object-leaf-node [node]="node"></hrc-json-object-leaf-node>
+</div>
+<div *ngIf="node.children.length !== 0">
+  <hrc-json-object-branch-node [node]="node"></hrc-json-object-branch-node>
+</div>
