@@ -1,0 +1,31 @@
+.header-li {
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.header-link-w-space {
+  display: flex;
+  font-family: monospace;
+  margin-right: 50px;
+}
+
+.header-link-no-space {
+  display: flex;
+  font-family: monospace;
+}
+
+.header-version {
+  display: flex;
+  margin-left: auto;
+  font-family: monospace;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.ul-wrapper {
+  list-style-type: none;
+  padding-top: 0;
+  margin-top: 0;
+}
+

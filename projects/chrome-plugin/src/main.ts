@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (halJsonPage()) {
     const json = getJson();
     if (json) {
-      console.log(json);
       bootstrapComponent();
     }
   }

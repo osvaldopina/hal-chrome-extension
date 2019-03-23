@@ -1,0 +1,4 @@
+<pre *ngIf="isSimpleProperty()" [ngClass]="propValueStyleClass()">{{value()}}</pre>
+<a *ngIf="isLinkProperty()" [ngClass]="'leaf-string-property-link-value'" href="{{linkHref()}}">{{value()}}</a>
+<uri-template-editor *ngIf="isTemplatedLink()" [uriTemplate]="node.value"></uri-template-editor>
+<pre *ngIf="!node.lastItem" [ngClass]="'leaf-property-separator'">,</pre>

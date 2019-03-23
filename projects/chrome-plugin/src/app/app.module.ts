@@ -1,10 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { HalRenderComponent } from 'projects/hal-render-component-library/src/projects';
-import { HalRenderComponentModule } from 'projects/hal-render-component-library/src/lib/hal-render-component.module';
-import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
-// import { HalRenderComponent } from 'projects/hal-render-component-library/src/lib/hal-render.component';
+import { HalRenderComponentModule } from 'hal-render-component';
 
 @NgModule({
   declarations: [

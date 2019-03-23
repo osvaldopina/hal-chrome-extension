@@ -19,21 +19,29 @@
       "dom"
     ],
     "paths": {
-      "hal-render-component-library": [
-        "dist/hal-render-component-library",
-        "dist/hal-render-component-library",
-        "dist/hal-render-component-library"
+      "hal-render-component": [
+        "dist/hal-render-component"
       ],
-      "hal-render-component-library/*": [
-        "dist/hal-render-component-library/*",
-        "dist/hal-render-component-library/*",
-        "dist/hal-render-component-library/*"
+      "hal-render-component/*": [
+        "dist/hal-render-component/*"
       ],
       "chrome-plugin": [
         "dist/chrome-plugin"
       ],
       "chrome-plugin/*": [
         "dist/chrome-plugin/*"
+      ],
+      "tree-model": [
+        "dist/tree-model"
+      ],
+      "tree-model/*": [
+        "dist/tree-model/*"
+      ],
+      "uri-template-editor": [
+        "dist/uri-template-editor"
+      ],
+      "uri-template-editor/*": [
+        "dist/uri-template-editor/*"
       ]
     }
   }

@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { HalRenderComponentModule } from '../../projects/hal-render-component-library/src/lib/hal-render-component.module';
+import { HalRenderComponentModule } from 'hal-render-component';
 import { CommonModule } from '@angular/common';
 
 @NgModule({

@@ -1,5 +1,5 @@
 <div>
-  <textarea #jsonValueTextArea  rows="20" [ngStyle]="{'width': '100%'}" (input)="setJsonValue($event.target.value)">
+  <textarea #jsonValueTextArea rows="20" [ngStyle]="{'width': '100%'}">
     {
       "_links": {
         "curies": [{
@@ -43,10 +43,23 @@
       },
       "string-property": "string property value",
       "boolean-property": true,
+      "null-property" : null,
+      "number-property" : 349.345,
+      "empty-object" : {},
+      "empty-array" : [],
       "array-property": [
         "first-array-item",
         false,
-        123
+        123,
+        null
+      ],
+      "array-of-objects": [
+      {
+        "first-object-property": "value"
+      },
+      {
+        "second-object-property" : "value"
+      }
       ],
       "a-sub-object": {
         "a-sub-object-property": "a sub object property value"

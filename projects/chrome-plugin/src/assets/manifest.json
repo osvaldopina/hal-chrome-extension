@@ -1,0 +1,17 @@
+{
+  "name": "HAL Formatter",
+  "version": "${project-version}",
+  "manifest_version": 2,
+  "description": "Makes HAL easy to read. Open source.",
+  "homepage_url": "https://github.com/osvaldopina/hal-chrome-plugin",
+  "minimum_chrome_version": "21",
+  "icons": {
+       "16": "hal_16.png",
+       "32": "hal_32.png",
+       "64": "hal_64.png"
+  },
+  "content_scripts": [
+    { "matches": ["<all_urls>"], "js": ["main.js", "polyfills.js", "runtime.js"], "run_at": "document_start" }
+  ],
+  "permissions":["*://*/*", "<all_urls>"]
+}

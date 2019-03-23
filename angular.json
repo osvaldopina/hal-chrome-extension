@@ -3,33 +3,32 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "hal-render-component-library": {
-      "root": "projects/hal-render-component-library",
-      "sourceRoot": "projects/hal-render-component-library/src",
+    "hal-render-component": {
+      "root": "projects/hal-render-component",
+      "sourceRoot": "projects/hal-render-component/src",
       "projectType": "library",
-      "prefix": "hrc",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/hal-render-component-library/tsconfig.lib.json",
-            "project": "projects/hal-render-component-library/ng-package.json"
+            "tsConfig": "projects/hal-render-component/tsconfig.lib.json",
+            "project": "projects/hal-render-component/ng-package.json"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/hal-render-component-library/src/lib/tree-model/first-tree-model-bug.spec.ts",
-            "tsConfig": "projects/hal-render-component-library/tsconfig.spec.json",
-            "karmaConfig": "projects/hal-render-component-library/karma.conf.js"
+            "main": "projects/hal-render-component/src/test.ts",
+            "tsConfig": "projects/hal-render-component/tsconfig.spec.json",
+            "karmaConfig": "projects/hal-render-component/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/hal-render-component-library/tsconfig.lib.json",
-              "projects/hal-render-component-library/tsconfig.spec.json"
+              "projects/hal-render-component/tsconfig.lib.json",
+              "projects/hal-render-component/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -225,6 +224,76 @@
             "tsConfig": [
               "src/tsconfig.app.json",
               "src/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "tree-model": {
+      "root": "projects/tree-model",
+      "sourceRoot": "projects/tree-model/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/tree-model/tsconfig.lib.json",
+            "project": "projects/tree-model/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/tree-model/src/test.ts",
+            "tsConfig": "projects/tree-model/tsconfig.spec.json",
+            "karmaConfig": "projects/tree-model/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/tree-model/tsconfig.lib.json",
+              "projects/tree-model/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "uri-template-editor": {
+      "root": "projects/uri-template-editor",
+      "sourceRoot": "projects/uri-template-editor/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/uri-template-editor/tsconfig.lib.json",
+            "project": "projects/uri-template-editor/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/uri-template-editor/src/test.ts",
+            "tsConfig": "projects/uri-template-editor/tsconfig.spec.json",
+            "karmaConfig": "projects/uri-template-editor/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/uri-template-editor/tsconfig.lib.json",
+              "projects/uri-template-editor/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
