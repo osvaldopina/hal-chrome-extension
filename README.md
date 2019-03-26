@@ -1,27 +1,49 @@
-# HalRenderComponent
+# Hal Chrome Plugin
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4.
+  
 
-## Development server
+A Chrome extension to render and interact with json hal
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+  
 
-## Code scaffolding
+## General Information
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The plugin was develop in Angular and is divided in several projects:
 
-## Build
+  
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### hal-render-application
 
-## Running unit tests
+A application that is used to test the plugin.  By typing `ng serve`  the application became available at http:localhost:4200 and it renders a textarea that has its contents rendered as it were a json hal page.
+  
+ ### chrome-plugin
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+A application that contains specific chrome plugin code. It is responsable to check if the current chrome page is a hal document and bootstraps the hal-render-component with the hal json. 
 
-## Running end-to-end tests
+  
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### hal-render-component
 
-## Further help
+A library that defines a component (hrc-hal-render-component) that renders the hal content.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+  
+
+### tree-model
+
+A library that defines the data structures that are used by hal-render-component
+
+  
+
+### uri-template-editor
+
+A library that renders and allow in place editing of uri templates
+
+## How to Install
+
+### Install from chrome store
+Get it from chrome store
+
+### Install from sources
+* Clone the repository and type `npm run build`. 
+* Navigate to `chrome://chrome/extensions/` and enable "Developer mode"
+* Click "Load unpacked extension" and select the  `dist/chrome-plugin`.
