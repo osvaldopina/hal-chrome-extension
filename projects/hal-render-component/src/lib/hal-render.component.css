@@ -1,7 +1,9 @@
-.header-li {
+.header {
   display: flex;
   margin-top: 20px;
   margin-bottom: 20px;
+  flex-shrink: 0;
+  display: inline-flex;
 }
 
 .header-link-w-space {
@@ -21,6 +23,17 @@
   font-family: monospace;
   margin-top: 0px;
   margin-bottom: 0px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.content {
+  flex-grow: 1;
+  overflow-y: auto;
 }
 
 .ul-wrapper {

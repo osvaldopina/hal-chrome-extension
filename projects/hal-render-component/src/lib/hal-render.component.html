@@ -1,15 +1,17 @@
-<ul [ngClass]="'ul-wrapper'">
-  <li  [ngClass]="'header-li'">
-      <a *ngIf="isCurrentViewTree()" href="javascript:void(0)" (click)="viewRaw()" [ngClass]="'header-link-w-space'">Show raw</a>
-      <a *ngIf="isCurrentViewRaw()" href="javascript:void(0)" (click)="viewTree()" [ngClass]="'header-link-w-space'">Show tree</a>
-      <a *ngIf="isCurrentViewTree()" href="javascript:void(0)" (click)="expandAll()" [ngClass]="'header-link-w-space'">Expand all</a>
-      <a *ngIf="isCurrentViewTree()" href="javascript:void(0)" (click)="colapseAll()"[ngClass]="'header-link-no-space'">Colapse all</a>
-      <pre [ngClass]="'header-version'" >version:{{versionFromChromeManifest()}}</pre>
-  </li>
-  <li *ngIf="isCurrentViewTree()">
-    <hrc-json-object-node *ngIf="root" [node]="root"></hrc-json-object-node>
-  </li>
-  <li *ngIf="isCurrentViewRaw()">
+<div ngClass="wrapper">
+  <div  ngClass="header">
+      <a *ngIf="isCurrentViewTree()" href="javascript:void(0)" (click)="viewRaw()" ngClass="header-link-w-space">Show raw</a>
+      <a *ngIf="isCurrentViewRaw()" href="javascript:void(0)" (click)="viewTree()" ngClass="header-link-w-space">Show tree</a>
+      <a *ngIf="isCurrentViewTree()" href="javascript:void(0)" (click)="expandAll()" ngClass="header-link-w-space">Expand all</a>
+      <a *ngIf="isCurrentViewTree()" href="javascript:void(0)" (click)="colapseAll()"ngClass="header-link-no-space">Colapse all</a>
+      <pre ngClass="header-version" >version:{{versionFromChromeManifest()}}</pre>
+  </div>
+  <div *ngIf="isCurrentViewTree()" ngClass="content">
+    <ul>
+        <hrc-json-object-node *ngIf="root" [node]="root"></hrc-json-object-node>
+    </ul>
+  </div>
+  <div *ngIf="isCurrentViewRaw()" ngClass="content">
     <pre id="raw-json">{{json}}</pre>
-  </li>
-</ul>
+  </div>
+</div>

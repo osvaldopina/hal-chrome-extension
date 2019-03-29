@@ -4,9 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build-all-libraries": "ng build tree-model && ng build uri-template-editor && ng build hal-render-component && ng build chrome-plugin",
-    "build": "npm run build-all-libraries && ng build chrome-plugin --prod --output-hashing none && copyfiles -f projects/chrome-plugin/src/assets/* dist/chrome-plugin",
-    "postbuild": "node ./manifest-version.js",
+    "build-all-libraries": "ng build tree-model && ng build uri-template-editor && ng build hal-render-component",
+    "build": "npm run test && npm run build-all-libraries && ng build chrome-plugin --prod --output-hashing none && copyfiles -f projects/chrome-plugin/src/app/manifest.json dist/chrome-plugin",
+    "postbuild": "node ./adjust-manifest-version.js && node ./generate-zip.js",
     "build-chrome-plugin": "ng build chrome-plugin --main projects/chrome-plugin/src/main.ts && copyfiles -f projects/chrome-plugin/src/app/manifest.json projects/chrome-plugin/src/app/icon.png dist/chrome-plugin",
     "test": "ng test tree-model --watch=false && ng test uri-template-editor --watch=false",
     "lint": "ng lint",
