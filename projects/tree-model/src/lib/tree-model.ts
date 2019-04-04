@@ -34,25 +34,37 @@ export class Curie {
 }
 
 export class Curies {
-  curies: Curie[] = [];
+  curiesArray: Curie[] = [];
 
   add(curie: Curie) {
-    this.curies.push(curie);
+    this.curiesArray.push(curie);
   }
 
   getCuriesNames() {
-    return this.curies.reduce((acum, curie, i) => {
+    return this.curiesArray.reduce((acum, curie, i) => {
       return acum + (i === 0 ? '' : ', ') + curie.name;
     }, '');
   }
 
   get(name: string) {
-    for (let i = 0; i <= this.curies.length - 1; i++) {
-      if (this.curies[i].name === name) {
-        return this.curies[i];
+    for (let i = 0; i <= this.curiesArray.length - 1; i++) {
+      if (this.curiesArray[i].name === name) {
+        return this.curiesArray[i];
       }
     }
     throw new Error(`Could not find curie named ${name}. availabe curies are: ${this.getCuriesNames()}`);
+  }
+
+  merge(curies: Curies): Curies {
+    let mergedCuriesArray: Curie[];
+    if (curies === null) {
+      mergedCuriesArray = curies.curiesArray.slice(0);
+    } else {
+      mergedCuriesArray = this.curiesArray.concat(curies.curiesArray);
+    }
+    const mergedCuries = new Curies();
+    mergedCuries.curiesArray = mergedCuriesArray;
+    return mergedCuries;
   }
 
 }
@@ -90,28 +102,37 @@ export function halNodeElementFactory(name: string, type: JsonElementType, halEl
   return result;
 }
 
-export function buildJsonTree(value: any): JsonElementNode {
-  return buildJsonNode(value, true, 'root');
+export function buildJsonTree(value: any, isRoot = true): JsonElementNode {
+  return buildJsonNode(value, true, isRoot ? 'root' : null);
 }
 
 
-export function buildHalJsonTree(value: object): JsonElementNode {
+export function buildHalJsonTree(value: object, curiesBase: Curies, isRoot: boolean): JsonElementNode {
   const _links = value['_links'];
   const _embedded = value['_embedded'];
   delete value['_links'];
   delete value['_embedded'];
-  const resourceTree = buildJsonTree(value);
+  const resourceTree = buildJsonTree(value, isRoot);
 
-  resourceTree.type = JsonElementType.Root;
+  if (isRoot) {
+    resourceTree.type = JsonElementType.Root;
+  } else {
+    resourceTree.type = JsonElementType.Object;
+  }
 
   if (resourceTree.children.length > 0) {
     resourceTree.children[resourceTree.children.length - 1].lastItem = false;
   }
+
   let curies;
+
   if (_links) {
     curies = extractCuries(_links);
+    if (curiesBase) {
+      curies = curiesBase.merge(curies);
+    }
 
-    delete _links['curies'];
+    // delete _links['curies'];
     resourceTree.children.push(buildHalLinksJsonTree({
       '_links': _links
     }, curies));
@@ -196,11 +217,13 @@ export function buildHalEmbeddedJsonTree(links: object, curies: Curies = new Cur
       }
       embeddedRoot.children.push(embeddedRelArray);
       embeddedRels[embeddedRel].forEach((embeddedItem) => {
-        embeddedRelArray.children.push(buildJsonNode(embeddedItem, false));
+        const embeddedItemTreeItem = buildHalJsonTree(embeddedItem, curies, false);
+        embeddedItemTreeItem.lastItem = false;
+        embeddedRelArray.children.push(embeddedItemTreeItem);
       });
       embeddedRelArray.children[embeddedRelArray.children.length - 1].lastItem = true;
     } else if (typeof embeddedRels[embeddedRel] === 'object') {
-      const embeddedResourceTree = buildHalJsonTree(embeddedRels[embeddedRel]);
+      const embeddedResourceTree = buildHalJsonTree(embeddedRels[embeddedRel], curies, false);
       if (curieName) {
         embeddedResourceTree.curie = curies.get(curieName);
       }
@@ -258,7 +281,7 @@ function buildJsonNode(value: any, last: boolean, name = null): JsonElementNode 
   node.expanded = false;
 
 
- if (value == null) {
+  if (value == null) {
     node.type = JsonElementType.Null;
   } else if (typeof value === 'string') {
     node.type = JsonElementType.String;

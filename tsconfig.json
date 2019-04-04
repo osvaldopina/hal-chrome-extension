@@ -19,6 +19,9 @@
       "dom"
     ],
     "paths": {
+      "core-js/es7/reflect": [
+        "node_modules/core-js/proposals/reflect-metadata"
+      ],
       "hal-render-component": [
         "dist/hal-render-component"
       ],

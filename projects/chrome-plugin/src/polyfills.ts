@@ -77,9 +77,9 @@
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */
+import '@webcomponents/custom-elements'; //  Custom Elements Polyfill
 import 'zone.js/dist/zone';  // Included with Angular CLI.
 import 'core-js/es7/reflect';
-
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */

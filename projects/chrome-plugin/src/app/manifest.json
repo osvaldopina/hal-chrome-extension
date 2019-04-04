@@ -11,7 +11,7 @@
        "64": "assets/hal_64.png"
   },
   "content_scripts": [
-    { "matches": ["<all_urls>"], "js": ["main.js", "polyfills.js", "runtime.js"], "run_at": "document_start" }
+    { "matches": ["<all_urls>"], "js": ["main.js", "polyfills.js", "runtime.js", "vendor.js"], "run_at": "document_start" }
   ],
   "permissions":["*://*/*", "<all_urls>"]
 }

@@ -11,7 +11,8 @@ import {
   buildHalJsonTree,
   buildHalEmbeddedJsonTree,
   getCurieName,
-  Curie
+  Curie,
+  Curies
 } from './tree-model';
 
 describe('buildJsonTree', () => {
@@ -314,8 +315,19 @@ describe('buildHalEmbeddedJsonTree', () => {
       ], false)
     );
   });
-  it('buildHalEmbeddedJsonTree for an array links rel ', () => {
-
+  it('buildHalEmbeddedJsonTree for an array _embedded rel', () => {
+    console.log(buildHalEmbeddedJsonTree({
+      '_embedded': {
+        'first-rel': [
+          {
+            'first-property': 'first property value'
+          },
+          {
+            'second-property': 'second property value'
+          }
+        ]
+      }
+    }));
     expect(
       buildHalEmbeddedJsonTree({
         '_embedded': {
@@ -337,6 +349,54 @@ describe('buildHalEmbeddedJsonTree', () => {
           ], false),
           jsonNodeElementFactory(null, JsonElementType.Object, null, [
             jsonNodeElementFactory('second-property', JsonElementType.String, 'second property value', [], true)
+          ], true),
+        ], true),
+      ], false));
+  });
+  it('buildHalEmbeddedJsonTree for embedded array with _links', () => {
+    expect(
+      buildHalEmbeddedJsonTree({
+        '_embedded': {
+          'rel': [{
+            '_links': {
+              'self': { 'href': '/orders/123' }
+            }
+          }]
+        }
+      })
+    ).toEqual(
+
+      jsonNodeElementFactory('_embedded', JsonElementType.Object, null, [
+        halNodeElementFactory('rel', JsonElementType.Array, HalElementType.LinkRel, null, [
+          jsonNodeElementFactory(null, JsonElementType.Object, null, [
+            jsonNodeElementFactory('_links', JsonElementType.Object, null, [
+              halNodeElementFactory('self', JsonElementType.Object, HalElementType.LinkRel, null, [
+                halNodeElementFactory('href', JsonElementType.String, HalElementType.LinkHref, '/orders/123', [], true)
+              ], true)
+            ], true),
+          ], true),
+        ], true),
+      ], false));
+  });
+  it('buildHalEmbeddedJsonTree for embedded object with _links', () => {
+    expect(
+      buildHalEmbeddedJsonTree({
+        '_embedded': {
+          'rel': {
+            '_links': {
+              'self': { 'href': '/orders/123' }
+            }
+          }
+        }
+      })
+    ).toEqual(
+
+      jsonNodeElementFactory('_embedded', JsonElementType.Object, null, [
+        halNodeElementFactory('rel', JsonElementType.Object, HalElementType.LinkRel, null, [
+          jsonNodeElementFactory('_links', JsonElementType.Object, null, [
+            halNodeElementFactory('self', JsonElementType.Object, HalElementType.LinkRel, null, [
+              halNodeElementFactory('href', JsonElementType.String, HalElementType.LinkHref, '/orders/123', [], true)
+            ], true)
           ], true),
         ], true),
       ], false));
@@ -388,46 +448,48 @@ describe('buildHalJsonTree', () => {
         'a-sub-object': {
           'a-sub-object-property': 'a sub object property value'
         }
-      })
-    ).toEqual(
-      jsonNodeElementFactory('root', JsonElementType.Root, null, [
-        jsonNodeElementFactory('string-property', JsonElementType.String, 'string property value', [], false),
-        jsonNodeElementFactory('boolean-property', JsonElementType.Boolean, 'true', [], false),
-        jsonNodeElementFactory('array-property', JsonElementType.Array, null, [
-          jsonNodeElementFactory(null, JsonElementType.String, 'first-array-item', [], false),
-          jsonNodeElementFactory(null, JsonElementType.Boolean, 'false', [], false),
-          jsonNodeElementFactory(null, JsonElementType.Number, '123', [], true),
-        ], false),
-        jsonNodeElementFactory('a-sub-object', JsonElementType.Object, null, [
-          jsonNodeElementFactory('a-sub-object-property', JsonElementType.String, 'a sub object property value', [], true),
-        ], false),
-        jsonNodeElementFactory('_links', JsonElementType.Object, null, [
-          halNodeElementFactory('curie-name:curie-parameter', JsonElementType.Object, HalElementType.LinkRel, null, [
-            halNodeElementFactory('href', JsonElementType.String, HalElementType.LinkHref, 'http://self-url', [], true)
-          ], false, new Curie('curie-name', 'http://curie-href', true)),
-          halNodeElementFactory('an-array-link-rel', JsonElementType.Array, HalElementType.LinkRel, null, [
-            jsonNodeElementFactory(null, JsonElementType.Object, null, [
-              halNodeElementFactory('href', JsonElementType.String, HalElementType.LinkHref, 'http://one-array-link-rel-url', [], true)
-            ], false),
-            jsonNodeElementFactory(null, JsonElementType.Object, null, [
-              halNodeElementFactory('href', JsonElementType.String, HalElementType.LinkHref, 'http://other-array-link-rel-url', [], true)
-            ], true)
-          ], true)
-        ], false),
-        jsonNodeElementFactory('_embedded', JsonElementType.Object, null, [
-          halNodeElementFactory('a-embedded-rel', JsonElementType.Object, HalElementType.LinkRel, null, [
-            jsonNodeElementFactory('a-property', JsonElementType.String, 'a property value', [], true),
+      },
+        new Curies(),
+        true)
+      ).toEqual(
+        jsonNodeElementFactory('root', JsonElementType.Root, null, [
+          jsonNodeElementFactory('string-property', JsonElementType.String, 'string property value', [], false),
+          jsonNodeElementFactory('boolean-property', JsonElementType.Boolean, 'true', [], false),
+          jsonNodeElementFactory('array-property', JsonElementType.Array, null, [
+            jsonNodeElementFactory(null, JsonElementType.String, 'first-array-item', [], false),
+            jsonNodeElementFactory(null, JsonElementType.Boolean, 'false', [], false),
+            jsonNodeElementFactory(null, JsonElementType.Number, '123', [], true),
           ], false),
-          halNodeElementFactory('curie-name:other-embedded-rel', JsonElementType.Array, HalElementType.LinkRel, null, [
-            jsonNodeElementFactory(null, JsonElementType.Object, null, [
-              jsonNodeElementFactory('first-property', JsonElementType.String, 'first property value', [], true)
+          jsonNodeElementFactory('a-sub-object', JsonElementType.Object, null, [
+            jsonNodeElementFactory('a-sub-object-property', JsonElementType.String, 'a sub object property value', [], true),
+          ], false),
+          jsonNodeElementFactory('_links', JsonElementType.Object, null, [
+            halNodeElementFactory('curie-name:curie-parameter', JsonElementType.Object, HalElementType.LinkRel, null, [
+              halNodeElementFactory('href', JsonElementType.String, HalElementType.LinkHref, 'http://self-url', [], true)
+            ], false, new Curie('curie-name', 'http://curie-href', true)),
+            halNodeElementFactory('an-array-link-rel', JsonElementType.Array, HalElementType.LinkRel, null, [
+              jsonNodeElementFactory(null, JsonElementType.Object, null, [
+                halNodeElementFactory('href', JsonElementType.String, HalElementType.LinkHref, 'http://one-array-link-rel-url', [], true)
+              ], false),
+              jsonNodeElementFactory(null, JsonElementType.Object, null, [
+                halNodeElementFactory('href', JsonElementType.String, HalElementType.LinkHref, 'http://other-array-link-rel-url', [], true)
+              ], true)
+            ], true)
+          ], false),
+          jsonNodeElementFactory('_embedded', JsonElementType.Object, null, [
+            halNodeElementFactory('a-embedded-rel', JsonElementType.Object, HalElementType.LinkRel, null, [
+              jsonNodeElementFactory('a-property', JsonElementType.String, 'a property value', [], true),
             ], false),
-            jsonNodeElementFactory(null, JsonElementType.Object, null, [
-              jsonNodeElementFactory('second-property', JsonElementType.String, 'second property value', [], true)
-            ], true),
-          ], true, new Curie('curie-name', 'http://curie-href', true))
-        ], true)
-      ], true));
+            halNodeElementFactory('curie-name:other-embedded-rel', JsonElementType.Array, HalElementType.LinkRel, null, [
+              jsonNodeElementFactory(null, JsonElementType.Object, null, [
+                jsonNodeElementFactory('first-property', JsonElementType.String, 'first property value', [], true)
+              ], false),
+              jsonNodeElementFactory(null, JsonElementType.Object, null, [
+                jsonNodeElementFactory('second-property', JsonElementType.String, 'second property value', [], true)
+              ], true),
+            ], true, new Curie('curie-name', 'http://curie-href', true))
+          ], true)
+        ], true));
   });
 });
 describe('isCuriedRel', () => {

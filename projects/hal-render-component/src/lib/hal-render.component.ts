@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { buildHalJsonTree, JsonElementNode } from 'tree-model';
+import { buildHalJsonTree, JsonElementNode, Curies } from 'tree-model';
 
 enum CurrentView {
   RAW,
@@ -24,7 +24,7 @@ export class HalRenderComponent {
 
     if (value && value.length > 0) {
       this.json = value;
-      this.root = buildHalJsonTree(JSON.parse(value));
+      this.root = buildHalJsonTree(JSON.parse(value), new Curies(), true);
       this.expandAll();
     }
   }
@@ -59,10 +59,8 @@ export class HalRenderComponent {
 
   public versionFromChromeManifest() {
     if (chrome && chrome.runtime && chrome.runtime.getManifest) {
-      console.log('buscarndo do manifest');
       return chrome.runtime.getManifest().version;
     } else {
-      console.log('buscarndo FORA do manifest');
       return '(not running as chrome plugin!)';
     }
   }
