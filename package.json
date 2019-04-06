@@ -1,14 +1,15 @@
 {
   "name": "hal-render-component",
-  "version": "0.0.4",
+  "version": "0.0.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build-all-libraries": "ng build tree-model && ng build uri-template-editor && ng build hal-render-component",
-    "build": "npm run build-all-libraries && ng build chrome-plugin && copyfiles -f projects/chrome-plugin/src/app/manifest.json dist/chrome-plugin",
-    "build_": "npm run test && npm run build-all-libraries && ng build chrome-plugin && copyfiles -f projects/chrome-plugin/src/app/manifest.json dist/chrome-plugin",
+    "build": "npm run build-all-libraries && ng build chrome-extension --prod --aot --output-hashing none && copyfiles -f projects/chrome-extension/src/app/manifest/prod/manifest.json dist/chrome-extension",
+    "build_dev": "npm run build-all-libraries && ng build chrome-extension && copyfiles -f projects/chrome-extension/src/app/manifest/dev/manifest.json dist/chrome-extension && node ./adjust-manifest-version.js",
+    "x": "copyfiles -f projects/chrome-extension/src/app/manifest/dev/manifest.json dist/chrome-extension && node ./adjust-manifest-version.js",
+    "xx": "copyfiles -f projects/chrome-extension/src/app/manifest/dev/manifest.json dist/chrome-extension",
     "postbuild": "node ./adjust-manifest-version.js && node ./generate-zip.js",
-    "build-chrome-plugin": "ng build chrome-plugin --main projects/chrome-plugin/src/main.ts && copyfiles -f projects/chrome-plugin/src/app/manifest.json projects/chrome-plugin/src/app/icon.png dist/chrome-plugin",
     "test": "ng test tree-model --watch=false && ng test uri-template-editor --watch=false",
     "lint": "ng lint",
     "e2e": "ng e2e"

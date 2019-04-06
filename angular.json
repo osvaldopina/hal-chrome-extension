@@ -37,9 +37,9 @@
         }
       }
     },
-    "chrome-plugin": {
-      "root": "projects/chrome-plugin/",
-      "sourceRoot": "projects/chrome-plugin/src",
+    "chrome-extension": {
+      "root": "projects/chrome-extension/",
+      "sourceRoot": "projects/chrome-extension",
       "projectType": "application",
       "prefix": "app",
       "schematics": {},
@@ -47,14 +47,13 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/chrome-plugin",
+            "outputPath": "dist/chrome-extension",
             "index": "src/index.html",
-            "main": "projects/chrome-plugin/src/main.ts",
-            "polyfills": "projects/chrome-plugin/src/polyfills.ts",
-            "tsConfig": "projects/chrome-plugin/tsconfig.app.json",
+            "main": "projects/chrome-extension/src/main.ts",
+            "polyfills": "projects/chrome-extension/src/polyfills.ts",
+            "tsConfig": "projects/chrome-extension/tsconfig.app.json",
             "assets": [
-              "projects/chrome-plugin/src/favicon.ico",
-              "projects/chrome-plugin/src/assets"
+              "projects/chrome-extension/src/assets"
             ],
             "scripts": []
           },
@@ -62,8 +61,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "projects/chrome-plugin/src/environments/environment.ts",
-                  "with": "projects/chrome-plugin/src/environments/environment.prod.ts"
+                  "replace": "projects/chrome-extension/src/environments/environment.ts",
+                  "with": "projects/chrome-extension/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -88,34 +87,33 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "chrome-plugin:build"
+            "browserTarget": "chrome-extension:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "chrome-plugin:build:production"
+              "browserTarget": "chrome-extension:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "chrome-plugin:build"
+            "browserTarget": "chrome-extension:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/chrome-plugin/src/test.ts",
-            "polyfills": "projects/chrome-plugin/src/polyfills.ts",
-            "tsConfig": "projects/chrome-plugin/tsconfig.spec.json",
-            "karmaConfig": "projects/chrome-plugin/karma.conf.js",
+            "main": "projects/chrome-exntesion/src/test.ts",
+            "polyfills": "projects/chrome-extension/src/polyfills.ts",
+            "tsConfig": "projects/chrome-extension/tsconfig.spec.json",
+            "karmaConfig": "projects/chrome-extension/karma.conf.js",
             "styles": [
-              "projects/chrome-plugin/src/styles.css"
+              "projects/chrome-extension/src/styles.css"
             ],
             "scripts": [],
             "assets": [
-              "projects/chrome-plugin/src/favicon.ico",
-              "projects/chrome-plugin/src/assets"
+              "projects/chrome-extension/src/assets"
             ]
           }
         },
@@ -123,8 +121,8 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/chrome-plugin/tsconfig.app.json",
-              "projects/chrome-plugin/tsconfig.spec.json"
+              "projects/chrome-extension/tsconfig.app.json",
+              "projects/chrome-extension/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
