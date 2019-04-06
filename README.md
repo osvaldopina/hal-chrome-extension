@@ -41,7 +41,7 @@ A library that renders and allow in place editing of uri templates
 ## How to Install
 
 ### Install from chrome store
-Get it from chrome store
+Get it from [chrome store](https://chrome.google.com/webstore/detail/hal-formatter/idnmkfbmiljnmfagobfbipdjiplaojjd)
 
 ### Install from sources
 * Clone the repository and type `npm run build`. 
