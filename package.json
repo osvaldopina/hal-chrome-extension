@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build-all-libraries": "ng build tree-model && ng build uri-template-editor && ng build hal-form-template && ng build hal-render-component",
     "build": "npm run build-all-libraries && ng build chrome-extension --prod --aot --output-hashing none && copyfiles -f projects/chrome-extension/src/app/manifest/prod/manifest.json dist/chrome-extension",
-    "build_dev": "npm run build-all-libraries && ng build chrome-extension && copyfiles -f projects/chrome-extension/src/app/manifest/dev/manifest.json projects/chrome-extension/src/assets dist/chrome-extension && node ./adjust-manifest-version.js",
+    "build-dev": "npm run build-all-libraries && ng build chrome-extension && copyfiles -f projects/chrome-extension/src/app/manifest/dev/manifest.json projects/chrome-extension/src/assets dist/chrome-extension && node ./adjust-manifest-version.js",
     "copy-files-dev": "copyfiles -f projects/chrome-extension/src/app/manifest/dev/manifest.json projects/chrome-extension/src/assets dist/chrome-extension",
     "xx": "copyfiles -f projects/chrome-extension/src/app/manifest/dev/manifest.json dist/chrome-extension",
     "postbuild": "node ./adjust-manifest-version.js && node ./generate-zip.js",
@@ -17,7 +17,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~8.1.0",
-    "@angular/cdk": "~8.0.2",
+    "@angular/cdk": "~8.1.0",
     "@angular/common": "~8.1.0",
     "@angular/compiler": "~8.1.0",
     "@angular/core": "~8.1.0",

@@ -11,6 +11,9 @@
     "32": "src/assets/hal_32.png",
     "64": "src/assets/hal_64.png"
   },
+  "web_accessible_resources": [
+    "src/assets/Roboto-Regular-webfont.woff"
+  ],
   "content_scripts": [
     {
       "matches": [
@@ -22,7 +25,8 @@
         "runtime-es5.js"
       ],
       "css": [
-        "indigo-pink.css"
+        "src/assets/indigo-pink.css",
+        "src/assets/font-roboto.css"
       ],
       "run_at": "document_start"
     }

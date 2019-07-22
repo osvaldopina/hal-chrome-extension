@@ -6,7 +6,7 @@ import { NgModule } from '@angular/core';
 import {
   MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatToolbarModule,
   MatIconModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatProgressBarModule
-} from '@angular/Material';
+} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormSubmitService } from './services/form-submit.service';
 import { HalFormInstanceCreatorService } from './services/hal-form-instance-creator-service/hal-form-instance-creator.service';

@@ -1,7 +1,7 @@
 import { AbstractControl, FormArray, FormGroup } from '@angular/forms';
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { NestedTreeControl } from '@angular/cdk/tree';
-import { MatTreeNestedDataSource } from '@angular/Material';
+import { MatTreeNestedDataSource } from '@angular/material';
 import deepEqual from 'deep-equal';
 import { FormSubmitService, FormSubmissionResponse } from '../services/form-submit.service';
 import { SchemaCreatorService } from '../services/schema-creator-service/shema-creator.service';
