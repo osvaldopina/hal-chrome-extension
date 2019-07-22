@@ -20,10 +20,10 @@
         "<all_urls>"
       ],
       "js": [
-        "main-es5.js",
         "polyfills-es5.js",
         "runtime-es5.js",
-        "vendor-es5.js"
+        "vendor-es5.js",
+        "main-es5.js"
       ],
       "css": [
         "src/assets/indigo-pink.css",
