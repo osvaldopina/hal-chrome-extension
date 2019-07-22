@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build-all-libraries": "ng build tree-model && ng build uri-template-editor && ng build hal-render-component && ng build hal-form-template",
+    "build-all-libraries": "ng build tree-model && ng build uri-template-editor && ng build hal-form-template && ng build hal-render-component",
     "build": "npm run build-all-libraries && ng build chrome-extension --prod --aot --output-hashing none && copyfiles -f projects/chrome-extension/src/app/manifest/prod/manifest.json dist/chrome-extension",
     "build_dev": "npm run build-all-libraries && ng build chrome-extension && copyfiles -f projects/chrome-extension/src/app/manifest/dev/manifest.json projects/chrome-extension/src/assets dist/chrome-extension && node ./adjust-manifest-version.js",
     "copy-files-dev": "copyfiles -f projects/chrome-extension/src/app/manifest/dev/manifest.json projects/chrome-extension/src/assets dist/chrome-extension",
