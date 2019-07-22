@@ -1,6 +1,19 @@
+
+.plugin-version {
+  margin-left: auto;
+}
+
+.menu-item {
+  font-size: 20px;
+}
+
+body {
+  margin: 0px;
+}
+
 .header {
   display: flex;
-  margin-top: 20px;
+  margin-top: 0px;
   margin-bottom: 20px;
   flex-shrink: 0;
   display: inline-flex;
@@ -34,11 +47,5 @@
 .content {
   flex-grow: 1;
   overflow-y: auto;
+  font-size: 14px;
 }
-
-.ul-wrapper {
-  list-style-type: none;
-  padding-top: 0;
-  margin-top: 0;
-}
-

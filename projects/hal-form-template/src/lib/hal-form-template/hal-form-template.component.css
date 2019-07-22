@@ -1,0 +1,23 @@
+.unordered-list {
+  list-style-type: none;
+  padding-left: 20px;
+}
+
+.unordered-list-root {
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+.field-wrapper {
+  margin-bottom: 10px;
+  width: 95%;
+
+}
+
+.input {
+  width: 100%;
+}
+
+.progress-bar {
+  margin-top: 8px;
+}

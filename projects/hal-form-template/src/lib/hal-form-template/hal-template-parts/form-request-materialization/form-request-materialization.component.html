@@ -1,0 +1,14 @@
+<mat-card-subtitle>
+  <span *ngIf="isGet()">
+    <pre
+      class="bold">{{halFormInstance.getMethod()}} <a [ngClass]="{ 'disabledLink' : !isValid()} " [href]="getURL()">{{getURL()}}</a>
+    </pre>
+  </span>
+  <pre *ngIf="! isGet()" class="bold">{{getMethod()}}  {{getURL()}}</pre>
+</mat-card-subtitle>
+<mat-card-subtitle *ngIf="! isGet()">
+  <pre class="bold">Payload ({{getContentType()}}):</pre>
+</mat-card-subtitle>
+<mat-card-content>
+  <pre>{{getPayload()}}</pre>
+</mat-card-content>

@@ -3,7 +3,7 @@ import { JsonElementNode } from 'tree-model';
 
 @Component({
   selector: 'hrc-json-property-name',
-  template: `<pre [ngStyle]="{'display':'inline'}">{{name()}}</pre>`
+  template: `<pre [ngStyle]="{'display':'inline', 'font-size': '14px'}">{{name()}}</pre>`
 })
 export class JsonPropertyNameComponent {
 

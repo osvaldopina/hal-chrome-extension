@@ -3,19 +3,26 @@
   user-select: none;
   display: inline;
   font-weight : bold;
+  font-size: 14px;
+  font-family: monospace;
 }
 
 .branch-property-name {
   user-select: none;
   display: inline;
+  font-size: 14px;
+  font-family: monospace;
 }
 
 .branch-end {
   display: inline;
+  font-size: 14px;
+  font-family: monospace;
 }
 
 .link {
   display: inline;
+  font-size: 14px;
   font-family: monospace;
   color: black;
 }

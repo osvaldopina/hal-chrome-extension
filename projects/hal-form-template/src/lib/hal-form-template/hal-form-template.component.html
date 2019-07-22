@@ -1,0 +1,35 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=block" rel="stylesheet">
+<mat-card class="mat-elevation-z8">
+  <mat-toolbar>
+    <span>{{getName()}}</span>
+  </mat-toolbar>
+  <mat-card-content>
+    <ul class="unordered-list-root">
+      <cdk-tree [dataSource]="dataSource" [treeControl]="treeControl" [trackBy]="trackBy">
+        <cdk-nested-tree-node *cdkTreeNodeDef="let node; when: isControl">
+          <li [formGroup]="node.getControl().parent">
+            <app-form-input [node]="node" (removeArrayItem)="removeArrayItem(node)"></app-form-input>
+          </li>
+        </cdk-nested-tree-node>
+        <cdk-nested-tree-node *cdkTreeNodeDef="let node; when: isGroupOrArray">
+          <li>{{node.getLabel()}}
+            <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="node.getType() === 'ARRAY'"
+              (click)='addArrayItem(node)'>
+              <mat-icon>add</mat-icon>
+            </button>
+            <ul [formGroup]="node.getControl()" [ngClass]="{ 'unordered-list-root' : node.isRoot(), 'unordered-list': ! node.isRoot()} ">
+              <ng-container cdkTreeNodeOutlet></ng-container>
+            </ul>
+            <app-remove-array-item-button [node]="node" (removeArrayItem)="removeArrayItem($event)">
+            </app-remove-array-item-button>
+          </li>
+        </cdk-nested-tree-node>
+      </cdk-tree>
+    </ul>
+  </mat-card-content>
+  <app-form-request-materialization [halFormInstance]="halFormInstance"></app-form-request-materialization>
+  <button [disabled]="!halFormInstance.isValid()" *ngIf="halFormInstance.getMethod() !== 'GET'" mat-raised-button
+    (click)="onSubmit()">submit</button>
+  <app-http-response-panel [response]="response"></app-http-response-panel>
+  <mat-progress-bar *ngIf="loading" class="progress-bar" mode="indeterminate"></mat-progress-bar>
+</mat-card>

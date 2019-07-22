@@ -1,0 +1,15 @@
+<div class="input">
+  <mat-form-field class='field-wrapper'>
+    <input matInput [placeholder]="node.getLabel()" type="text" [formControl]="node.getControl()"/>
+    <mat-error *ngIf="node.getControl().hasError('pattern')">
+      {{node.getLabel()}} is not valid
+    </mat-error>
+    <mat-error *ngIf="node.getControl().hasError('required')">
+      {{node.getLabel()}} is required
+    </mat-error>
+    <button mat-button mat-icon-button matPrefix arial-label="Clear" *ngIf="node.isArrayItem()"
+      (click)='remove()'>
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</div>

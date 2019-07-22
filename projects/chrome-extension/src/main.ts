@@ -3,18 +3,21 @@ import '@webcomponents/custom-elements';
 import 'core-js/es7/reflect';
 import 'zone.js/dist/zone';
 
-import { enableProdMode } from '@angular/core';
+import { enableProdMode, NgModuleRef } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
+
 
 document.addEventListener('DOMContentLoaded', () => {
 
   if (halJsonPage()) {
     const json = getJson();
     if (json) {
+      addDocType();
       bootstrapComponent();
+      changeBodyMargin();
     }
   }
 
@@ -26,8 +29,10 @@ function bootstrapComponent() {
   if (environment.production) {
     enableProdMode();
   }
-  platformBrowserDynamic().bootstrapModule(AppModule).catch((err) => { console.log('error bootstraping plugin:' + err); });
-
+  platformBrowserDynamic().bootstrapModule(AppModule)
+    .catch((err) => {
+      console.log('error bootstraping plugin:' + err);
+    });
 }
 
 function halJsonPage() {
@@ -68,4 +73,21 @@ function getJson() {
     return null;
   }
 
+}
+
+function addDocType() {
+  const nodeDoctype = document.implementation.createDocumentType(
+    'html',
+    '-//W3C//DTD XHTML 1.0 Transitional//EN',
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtdd'
+  );
+  if (document.doctype) {
+    document.replaceChild(nodeDoctype, document.doctype);
+  } else {
+    document.insertBefore(nodeDoctype, document.childNodes[0]);
+  }
+}
+
+function changeBodyMargin() {
+  document.body.style.margin = '0px';
 }

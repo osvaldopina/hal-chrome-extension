@@ -1,0 +1,5 @@
+<ul class="template-list">
+  <li *ngFor="let template of getTemplates(); trackBy:identify" class="template-list">
+    <app-hal-form-template [halFormTemplate]="template"></app-hal-form-template>
+  </li>
+</ul>

@@ -7,12 +7,28 @@
   "minimum_chrome_version": "21",
   "short_name": "HAL Formatter",
   "icons": {
-       "16": "src/assets/hal_16.png",
-       "32": "src/assets/hal_32.png",
-       "64": "src/assets/hal_64.png"
+    "16": "src/assets/hal_16.png",
+    "32": "src/assets/hal_32.png",
+    "64": "src/assets/hal_64.png"
   },
   "content_scripts": [
-    { "matches": ["<all_urls>"], "js": ["main.js", "polyfills.js", "runtime.js"], "run_at": "document_start" }
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "main-es5.js",
+        "polyfills-es5.js",
+        "runtime-es5.js"
+      ],
+      "css": [
+        "indigo-pink.css"
+      ],
+      "run_at": "document_start"
+    }
   ],
-  "permissions":["*://*/*", "<all_urls>"]
+  "permissions": [
+    "*://*/*",
+    "<all_urls>"
+  ]
 }

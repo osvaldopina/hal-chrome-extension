@@ -1,9 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { buildHalJsonTree, JsonElementNode, Curies } from 'tree-model';
+import { isAmundsenHalForm } from './services/amudsen-hal-form-verifier';
 
 enum CurrentView {
-  RAW,
-  TREE
+  RAW = 'RAW',
+  TREE = 'TREE',
+  FORM = 'FORM'
 }
 
 @Component({
@@ -19,45 +21,70 @@ export class HalRenderComponent {
 
   currentView = CurrentView.TREE;
 
+  isAmudsenHalForm = false;
+
   @Input()
   set hal(value: string) {
 
     if (value && value.length > 0) {
+      const jsonValue = JSON.parse(value);
       this.json = value;
-      this.root = buildHalJsonTree(JSON.parse(value), new Curies(), true);
+      this.root = buildHalJsonTree(jsonValue, new Curies(), true);
       this.expandAll();
+      this.isAmudsenHalForm = isAmundsenHalForm(jsonValue);
+      this.currentView = CurrentView.TREE;
     }
   }
 
-  public expandAll() {
+  expandAll() {
     if (this.root) {
       this.expand(this.root);
     }
   }
 
-  public colapseAll() {
+  colapseAll() {
     if (this.root) {
       this.colapse(this.root);
     }
   }
 
-  public viewTree() {
+  viewTree() {
     this.currentView = CurrentView.TREE;
   }
 
-  public viewRaw() {
+  viewRaw() {
     this.currentView = CurrentView.RAW;
   }
 
-  public isCurrentViewTree() {
+  viewForm() {
+    this.currentView = CurrentView.FORM;
+  }
+
+  showRawButton(): boolean {
+    return  this.currentView !== CurrentView.RAW;
+  }
+
+  showTreeButton(): boolean {
+    return this.currentView !== CurrentView.TREE;
+  }
+
+  showFormButton(): boolean {
+    return this.currentView !== CurrentView.FORM && this.isAmudsenHalForm;
+  }
+
+  isCurrentViewTree() {
     return this.currentView === CurrentView.TREE;
   }
 
-  public isCurrentViewRaw() {
+  isCurrentViewRaw() {
     return this.currentView === CurrentView.RAW;
   }
 
-  public versionFromChromeManifest() {
+  isCurrentViewForm() {
+    return this.currentView === CurrentView.FORM;
+  }
+
+  versionFromChromeManifest() {
     if (chrome && chrome.runtime && chrome.runtime.getManifest) {
       return chrome.runtime.getManifest().version;
     } else {
@@ -74,4 +101,5 @@ export class HalRenderComponent {
     node.expanded = false;
     node.children.forEach((item) => { this.colapse(item); });
   }
+
 }

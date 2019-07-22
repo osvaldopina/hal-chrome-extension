@@ -1,0 +1,8 @@
+.status {
+  font-weight: bold;
+}
+
+.status-error {
+  font-weight: bold;
+  color: red
+}

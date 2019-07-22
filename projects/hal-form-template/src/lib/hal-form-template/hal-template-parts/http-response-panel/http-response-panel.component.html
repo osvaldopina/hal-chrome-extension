@@ -1,0 +1,20 @@
+<div *ngIf="response !== null">
+  <mat-card-subtitle *ngIf="response.getStatusText()">
+    <span [ngClass]="{'status': response.isOk() , 'status-error' : ! response.isOk() }">
+      <pre>status:{{ response.getStatusText()}}</pre>
+    </span>
+  </mat-card-subtitle>
+  <mat-card-subtitle *ngIf="response.getStatus()">
+    <span>
+      <pre [ngClass]="{'status': response.isOk() , 'status-error' : ! response.isOk() }">status code:{{ response.getStatus()}}</pre>
+    </span>
+  </mat-card-subtitle>
+  <mat-card-subtitle *ngIf="response.getContentType()">
+    <span>
+      <pre [ngClass]="{'status': response.isOk() , 'status-error' : ! response.isOk() }">content type: {{ response.getContentType()}}</pre>
+    </span>
+  </mat-card-subtitle>
+  <mat-card-content *ngIf="response.getBody()">
+    <pre [ngClass]="{'status': response.isOk() , 'status-error' : ! response.isOk() }">{{ response.getBody()}}</pre>
+  </mat-card-content>
+</div>

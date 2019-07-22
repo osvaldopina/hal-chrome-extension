@@ -7,7 +7,7 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 })
 export class AppComponent {
 
-  @ViewChild('jsonValueTextArea')
+  @ViewChild('jsonValueTextArea', { static: true })
   jsonValueTextArea: ElementRef;
 
   hal: string;

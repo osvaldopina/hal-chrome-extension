@@ -1,0 +1,9 @@
+.bold {
+  font-weight: bold;
+}
+
+.disabledLink {
+  color: currentColor;
+  text-decoration: none;
+  pointer-events: none;
+}
