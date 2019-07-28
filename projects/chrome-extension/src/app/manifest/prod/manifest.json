@@ -3,7 +3,7 @@
   "version": "${project-version}",
   "manifest_version": 2,
   "description": "Makes HAL easy to read. Open source.",
-  "homepage_url": "https://github.com/osvaldopina/hal-chrome-plugin",
+  "homepage_url": "https://github.com/osvaldopina/hal-chrome-extension",
   "minimum_chrome_version": "21",
   "short_name": "HAL Formatter",
   "icons": {
