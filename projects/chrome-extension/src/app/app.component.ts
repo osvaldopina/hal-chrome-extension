@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef, ChangeDetectionStrategy, OnInit, Inject } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  template: '<hrc-hal-render-component [hal]="jsonValue"></hrc-hal-render-component>',
+  template: '<hrc-hal-render-component [hal]="jsonValue" [initialView]="initialView"></hrc-hal-render-component>',
 })
 export class AppComponent {
+
+  constructor(@Inject('initialView') public initialView: string) {
+  }
 
   jsonValue = this.getPreJsonElement().textContent;
 
@@ -19,4 +22,5 @@ export class AppComponent {
 
     return preElement;
   }
+
 }

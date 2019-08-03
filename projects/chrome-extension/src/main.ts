@@ -3,7 +3,7 @@ import '@webcomponents/custom-elements';
 import 'core-js/es7/reflect';
 import 'zone.js/dist/zone';
 
-import { enableProdMode, NgModuleRef } from '@angular/core';
+import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule } from './app/app.module';
@@ -11,7 +11,6 @@ import { environment } from './environments/environment';
 
 
 document.addEventListener('DOMContentLoaded', () => {
-
   if (halJsonPage()) {
     const json = getJson();
     if (json) {
@@ -20,19 +19,19 @@ document.addEventListener('DOMContentLoaded', () => {
       changeBodyMargin();
     }
   }
-
 }, false);
 
 
 function bootstrapComponent() {
-
   if (environment.production) {
     enableProdMode();
   }
-  platformBrowserDynamic().bootstrapModule(AppModule)
-    .catch((err) => {
-      console.log('error bootstraping plugin:' + err);
-    });
+  getInitialView().then((initialView) => {
+    platformBrowserDynamic([{ provide: 'initialView', useValue: initialView}]).bootstrapModule(AppModule)
+      .catch((err) => {
+        console.log('error bootstraping plugin:' + err);
+      });
+  });
 }
 
 function halJsonPage() {
@@ -46,18 +45,14 @@ function halJsonPage() {
 }
 
 function isJsonPage() {
-
   return documentHasOnlyHtmlWithHeadAndBody() && bodyHasOnlyPre();
-
 }
 
 function documentHasOnlyHtmlWithHeadAndBody() {
-
   return document.children.length === 1 && document.childNodes[0].nodeName.toUpperCase() === 'HTML' &&
     document.children[0].children.length === 2 &&
     document.children[0].childNodes[0].nodeName.toUpperCase() === 'HEAD' &&
     document.children[0].childNodes[1].nodeName.toUpperCase() === 'BODY';
-
 }
 
 function bodyHasOnlyPre() {
@@ -66,13 +61,11 @@ function bodyHasOnlyPre() {
 }
 
 function getJson() {
-
   try {
     return JSON.parse(document.body.firstChild.textContent);
   } catch (err) {
     return null;
   }
-
 }
 
 function addDocType() {
@@ -90,4 +83,12 @@ function addDocType() {
 
 function changeBodyMargin() {
   document.body.style.margin = '0px';
+}
+
+function getInitialView(): Promise<string> {
+  return new Promise<string>((resolve, reject) => {
+    chrome.storage.local.get(['hal-render-view'], (value) => {
+      resolve(value['hal-render-view']);
+    });
+  });
 }

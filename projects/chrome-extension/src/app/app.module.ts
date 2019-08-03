@@ -27,16 +27,4 @@ export class AppModule {
     document.body.childNodes[1].remove();
   }
 
-  checkFont(strFamily) {
-    const objDiv = document.createElement('div');
-
-    objDiv.style.fontFamily = strFamily;
-    objDiv.appendChild(document.createTextNode('FONT TEST'));
-
-    if (window.getComputedStyle) {
-      return window.getComputedStyle(objDiv, null).getPropertyValue('font-family') === strFamily;
-    }
-
-    return objDiv.style.fontFamily === strFamily;
-  }
 }

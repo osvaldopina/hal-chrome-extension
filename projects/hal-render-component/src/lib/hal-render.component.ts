@@ -17,11 +17,19 @@ export class HalRenderComponent {
 
   root: JsonElementNode;
 
-  json: String;
+  json: string;
 
-  currentView = CurrentView.TREE;
+  curView: CurrentView;
 
-  isAmudsenHalForm = false;
+  init: string;
+
+
+  @Input()
+  initialView: string;
+
+  currentView: CurrentView = null;
+
+  isAmundsenHalForm = false;
 
   @Input()
   set hal(value: string) {
@@ -31,9 +39,21 @@ export class HalRenderComponent {
       this.json = value;
       this.root = buildHalJsonTree(jsonValue, new Curies(), true);
       this.expandAll();
-      this.isAmudsenHalForm = isAmundsenHalForm(jsonValue);
-      this.currentView = CurrentView.TREE;
+      this.isAmundsenHalForm = isAmundsenHalForm(jsonValue);
+      if (this.currentView === null) {
+        if (this.initialView === CurrentView.FORM && !this.isAmundsenHalForm) {
+          this.currentView = CurrentView.TREE;
+        } else if (this.initialView === null || this.initialView === undefined) {
+          this.currentView = CurrentView.TREE;
+        } else {
+          this.currentView = CurrentView[this.initialView];
+        }
+      }
     }
+  }
+
+  get hal(): string {
+    return this.json;
   }
 
   expandAll() {
@@ -49,19 +69,24 @@ export class HalRenderComponent {
   }
 
   viewTree() {
-    this.currentView = CurrentView.TREE;
+    this.setView(CurrentView.TREE);
   }
 
   viewRaw() {
-    this.currentView = CurrentView.RAW;
+    this.setView(CurrentView.RAW);
   }
 
   viewForm() {
-    this.currentView = CurrentView.FORM;
+    this.setView(CurrentView.FORM);
+  }
+
+  setView(view: CurrentView) {
+    this.currentView = view;
+    chrome.storage.local.set({ 'hal-render-view': this.currentView });
   }
 
   showRawButton(): boolean {
-    return  this.currentView !== CurrentView.RAW;
+    return this.currentView !== CurrentView.RAW;
   }
 
   showTreeButton(): boolean {
@@ -69,7 +94,7 @@ export class HalRenderComponent {
   }
 
   showFormButton(): boolean {
-    return this.currentView !== CurrentView.FORM && this.isAmudsenHalForm;
+    return this.currentView !== CurrentView.FORM && this.isAmundsenHalForm;
   }
 
   isCurrentViewTree() {

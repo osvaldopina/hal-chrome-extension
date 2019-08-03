@@ -135,4 +135,5 @@ export class HalFormTemplateComponent implements OnChanges {
   hideLoader() {
     this.loading = false;
   }
+
 }
