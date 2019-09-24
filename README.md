@@ -43,7 +43,15 @@ A library that renders and allow in place editing of uri templates
 ### Install from chrome store
 Get it from [chrome store](https://chrome.google.com/webstore/detail/hal-formatter/idnmkfbmiljnmfagobfbipdjiplaojjd)
 
+To validate the installation:
+* Access the following [link](https://raw.githubusercontent.com/osvaldopina/hal-chrome-extension/master/hal-form-example.json)
+* The document should be rendered as follow:
+![Plugin-image](https://raw.githubusercontent.com/osvaldopina/hal-chrome-extension/master/form-examle.PNG)
+
+
 ### Install from sources
-* Clone the repository and type `npm run build`. 
+* Clone the repository and type:
+  * `npm install`
+  * `npm run build`
 * Navigate to `chrome://chrome/extensions/` and enable "Developer mode"
 * Click "Load unpacked extension" and select the  `dist/chrome-extension`.
